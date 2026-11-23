@@ -30,6 +30,30 @@ console.log('\n=== A. chat.html ===');
     .filter(tag => { const id = (tag.match(/id="([^"]+)"/) || [])[1]; return !id || !HTML.includes(`for="${id}"`); });
   ok(unnamed.length === 0, 'every number box has a label or an aria-label', unnamed.map(t => t.slice(0, 100)).join('\n      '));
 
+  // The character and persona editors' colour rows: their "Text" / "Dialog" labels point at nothing.
+  const colours = [...HTML.matchAll(/<input\b[^>]*class="color-(?:swatch|hex)"[^>]*>/g)].map(([tag]) => tag);
+  // A picker is "Text color" / "Dialog color", its box "... color code".
+  const named = (t) => /class="color-swatch"/.test(t) ? /aria-label="(Text|Dialog) color"/.test(t) : /aria-label="(Text|Dialog) color code"/.test(t);
+  ok(colours.length === 8 && colours.every(named),
+     'the eight colour pickers and colour-code boxes in the character and persona editors are named ("Text color", "Dialog color code"...)',
+     colours.filter(t => !named(t)).map(t => t.slice(0, 100)).join('\n      '));
+  // NVDA's browse mode reads a colour picker (Chromium's "color chooser") as page layout: only its colour, not its
+  // name. A role description makes NVDA read it as a control: "Text color, color picker, 87% red...".
+  const swatches = colours.filter(t => /class="color-swatch"/.test(t));
+  ok(swatches.length === 4 && swatches.every(t => /aria-roledescription="color picker"/.test(t)),
+     'the four colour pickers say "color picker", so NVDA reads their names in browse mode',
+     swatches.filter(t => !/aria-roledescription=/.test(t)).map(t => t.slice(0, 100)).join('\n      '));
+
+  // A checkbox is named by a <label> around it or pointing at it, or by aria-label(ledby).
+  const bareBoxes = [...HTML.matchAll(/<input\b[^>]*type="checkbox"[^>]*>/g)].filter(m => {
+    if (/aria-label(ledby)?=/.test(m[0])) return false;
+    const id = (m[0].match(/id="([^"]+)"/) || [])[1];
+    if (id && HTML.includes(`for="${id}"`)) return false;
+    const before = HTML.slice(0, m.index);
+    return before.lastIndexOf('<label') <= before.lastIndexOf('</label>');
+  }).map(m => m[0].slice(0, 100));
+  ok(bareBoxes.length === 0, 'every checkbox has a label around it or pointing at it, or an aria-label (Carousel Prompt and Alternative Greetings had none)', bareBoxes.join('\n      '));
+
   ok(/<select id="header-model-select" aria-labelledby="header-model-label"/.test(HTML) && /id="header-model-label">MODEL</.test(HTML),
      'the model dropdown is named by its MODEL text');
   ok(/class="search-toggle" aria-label="Web search"/.test(HTML), 'the web search button is "Web search" whatever its tooltip says');

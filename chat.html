@@ -880,13 +880,13 @@
         <div class="color-row">
           <div class="color-swatch-wrap">
             <label class="color-label">Text</label>
-            <input type="color" class="color-swatch" id="card-textcolor" value="#e0f8ff" oninput="syncColorHex(this,'card-textcolor-hex');previewCardColors()">
-            <input type="text" class="color-hex" id="card-textcolor-hex" value="#e0f8ff" oninput="syncColorSwatch(this,'card-textcolor');previewCardColors()">
+            <input type="color" class="color-swatch" id="card-textcolor" aria-label="Text color" aria-roledescription="color picker" value="#e0f8ff" oninput="syncColorHex(this,'card-textcolor-hex');previewCardColors()">
+            <input type="text" class="color-hex" id="card-textcolor-hex" aria-label="Text color code" value="#e0f8ff" oninput="syncColorSwatch(this,'card-textcolor');previewCardColors()">
           </div>
           <div class="color-swatch-wrap">
             <label class="color-label">Dialog</label>
-            <input type="color" class="color-swatch" id="card-dialogcolor" value="#d900ff" oninput="syncColorHex(this,'card-dialogcolor-hex');previewCardColors()">
-            <input type="text" class="color-hex" id="card-dialogcolor-hex" value="#d900ff" oninput="syncColorSwatch(this,'card-dialogcolor');previewCardColors()">
+            <input type="color" class="color-swatch" id="card-dialogcolor" aria-label="Dialog color" aria-roledescription="color picker" value="#d900ff" oninput="syncColorHex(this,'card-dialogcolor-hex');previewCardColors()">
+            <input type="text" class="color-hex" id="card-dialogcolor-hex" aria-label="Dialog color code" value="#d900ff" oninput="syncColorSwatch(this,'card-dialogcolor');previewCardColors()">
           </div>
         </div>
         <div style="margin-top:8px;">
@@ -901,7 +901,7 @@
 
         <!-- CAROUSEL PROMPT -->
         <div class="carousel-toggle-row" onclick="toggleCarouselBody()">
-          <input type="checkbox" id="card-carousel-enabled" onclick="event.stopPropagation();toggleCarouselBody()" style="cursor:pointer;accent-color:var(--cyan-mid,#00f3ff);">
+          <input type="checkbox" id="card-carousel-enabled" aria-labelledby="carousel-toggle-label" onclick="event.stopPropagation();toggleCarouselBody()" style="cursor:pointer;accent-color:var(--cyan-mid,#00f3ff);">
           <span class="carousel-toggle-label" id="carousel-toggle-label">Carousel Prompt <span style="opacity:0.5;font-size:11px;">— rotating instructions injected each turn</span></span>
         </div>
 
@@ -942,7 +942,7 @@
 
         <!-- ALT GREETINGS -->
         <div class="carousel-toggle-row" onclick="toggleAltGreetingsBody()">
-          <input type="checkbox" id="card-alt-greetings-enabled" onclick="event.stopPropagation();toggleAltGreetingsBody()" style="cursor:pointer;accent-color:var(--cyan-mid,#00f3ff);">
+          <input type="checkbox" id="card-alt-greetings-enabled" aria-labelledby="alt-greetings-toggle-label" onclick="event.stopPropagation();toggleAltGreetingsBody()" style="cursor:pointer;accent-color:var(--cyan-mid,#00f3ff);">
           <span class="carousel-toggle-label" id="alt-greetings-toggle-label">Alternative Greetings <span style="opacity:0.5;font-size:11px;">&mdash; flippable openings via the variant navigator</span></span>
         </div>
 
@@ -1370,13 +1370,13 @@ gobbo.tool(&#39;roll_dice&#39;, {
         <div class="color-row">
           <div class="color-swatch-wrap">
             <label class="color-label">Text</label>
-            <input type="color" class="color-swatch" id="persona-textcolor" value="#00b8ff" oninput="syncColorHex(this,'persona-textcolor-hex');previewPersonaColors()">
-            <input type="text" class="color-hex" id="persona-textcolor-hex" value="#00b8ff" oninput="syncColorSwatch(this,'persona-textcolor');previewPersonaColors()">
+            <input type="color" class="color-swatch" id="persona-textcolor" aria-label="Text color" aria-roledescription="color picker" value="#00b8ff" oninput="syncColorHex(this,'persona-textcolor-hex');previewPersonaColors()">
+            <input type="text" class="color-hex" id="persona-textcolor-hex" aria-label="Text color code" value="#00b8ff" oninput="syncColorSwatch(this,'persona-textcolor');previewPersonaColors()">
           </div>
           <div class="color-swatch-wrap">
             <label class="color-label">Dialog</label>
-            <input type="color" class="color-swatch" id="persona-dialogcolor" value="#00f3ff" oninput="syncColorHex(this,'persona-dialogcolor-hex');previewPersonaColors()">
-            <input type="text" class="color-hex" id="persona-dialogcolor-hex" value="#00f3ff" oninput="syncColorSwatch(this,'persona-dialogcolor');previewPersonaColors()">
+            <input type="color" class="color-swatch" id="persona-dialogcolor" aria-label="Dialog color" aria-roledescription="color picker" value="#00f3ff" oninput="syncColorHex(this,'persona-dialogcolor-hex');previewPersonaColors()">
+            <input type="text" class="color-hex" id="persona-dialogcolor-hex" aria-label="Dialog color code" value="#00f3ff" oninput="syncColorSwatch(this,'persona-dialogcolor');previewPersonaColors()">
           </div>
         </div>
         <div style="margin-top:8px;">
